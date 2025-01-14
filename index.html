@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="My Life Map - візуалізація життя через кольорові блоки. Дізнайтеся як виглядає ваше життя у тижнях, місяцях та роках.">
+    <meta name="keywords" content="life map, візуалізація життя, календар життя, життєва статистика">
+<meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com;">
+    <title>My Life Map - Візуалізація вашого життя</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <!-- <link rel="preload" as="style" href="styles.css"> -->
+    <link rel="icon" href="img/fav.ico">
+</head>
+
+<body>
+    <div class="theme-switch">
+        <button id="theme-toggle" aria-label="Перемкнути тему" class="theme-switch__button">
+            <span class="theme-switch__icon"></span>
+        </button>
+    </div>
+
+    <header class="header" role="banner">
+        <h1 class="header__logo">My Life Map</h1>
+        <p class="header__description">Візуалізація життя через кольорові блоки</p>
+    </header>
+
+    <main class="container" role="main">
+        <div id="loader" class="loader" aria-hidden="true">
+            <div class="loader__content">
+                <div class="loader__spinner"></div>
+                <p class="loader__text">Завантаження...</p>
+            </div>
+        </div>
+    
+        <div class="layout">
+            <!-- Ліва колонка з формою -->
+            <section id="input-section" class="layout__form">
+            <form id="user-form" class="form">
+                <fieldset class="form__fieldset">
+                    <legend class="form__legend">Заповніть ваші дані</legend>
+
+                    <div class="form__group">
+                        <label for="dob" class="form__label">Дата народження:</label>
+                        <input type="date" id="dob" name="dob" class="form__input" required aria-required="true">
+                    </div>
+
+                    <div class="form__group">
+                        <label for="gender" class="form__label">Стать:</label>
+                        <select id="gender" name="gender" class="form__select" required aria-required="true">
+                            <option value="male">Чоловіча</option>
+                            <option value="female">Жіноча</option>
+                        </select>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="country" class="form__label">Регіон проживання:</label>
+                        <select id="country" name="country" class="form__select" required aria-required="true"
+                            aria-label="Оберіть регіон проживання">
+                        </select>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="display-mode" class="form__label">Відображати за:</label>
+                        <select id="display-mode" name="display-mode" class="form__select" required
+                            aria-required="true">
+                            <option value="weeks">Тижні</option>
+                            <option value="months">Місяці</option>
+                            <option value="years">Роки</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="form__submit">
+                        Показати статистику
+                    </button>
+                </fieldset>
+            </form>
+        </section>
+        
+        <!-- Права колонка зі статистикою -->
+        <section id="stats-section" class="layout__stats" aria-hidden="true">
+            <!-- <h2 class="stats-section__title">Ваша життєва мапа</h2> -->
+        
+            <div class="stats-summary" id="stats-summary">
+                <!-- Заповнюється через JavaScript -->
+            </div>
+        
+            <div class="visualization-wrapper">
+                <div id="visualization" class="visualization" role="grid" aria-label="Візуалізація життя">
+                    <!-- Заповнюється через JavaScript -->
+                </div>
+            </div>
+        
+            <div class="controls">
+                <button id="export-btn" class="controls__button">
+                    Зберегти як зображення
+                </button>
+                <button id="share-btn" class="controls__button">
+                    Поділитися
+                </button>
+            </div>
+        </section>
+        </div>
+        </main>
+
+    <footer class="footer" role="contentinfo">
+        <p class="footer__text">&copy; 2024 My Life Map | Візуалізація життя у квадратах.</p>
+    </footer>
+
+    <!-- Шаблон для модального вікна -->
+    <div id="modal" class="modal" aria-hidden="true">
+        <div class="modal__content" role="dialog">
+            <button class="modal__close" aria-label="Закрити">×</button>
+            <div class="modal__body"></div>
+        </div>
+    </div>
+
+    <!-- Скрипти -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="./js/app.js" type="module"></script>
+</body>
+
+</html>

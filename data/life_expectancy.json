@@ -1,0 +1,54 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2024-01-13",
+  "countries": [
+    {
+      "code": "eu",
+      "name": "Європа",
+      "nameEn": "Europe",
+      "male": 75.8,
+      "female": 82.1,
+      "region": "Europe"
+    },
+    {
+      "code": "na",
+      "name": "Північна Америка",
+      "nameEn": "North America",
+      "male": 76.2,
+      "female": 81.3,
+      "region": "North America"
+    },
+    {
+      "code": "sa",
+      "name": "Південна Америка",
+      "nameEn": "South America",
+      "male": 72.5,
+      "female": 79.2,
+      "region": "South America"
+    },
+    {
+      "code": "as",
+      "name": "Азія",
+      "nameEn": "Asia",
+      "male": 71.8,
+      "female": 76.4,
+      "region": "Asia"
+    },
+    {
+      "code": "af",
+      "name": "Африка",
+      "nameEn": "Africa",
+      "male": 62.4,
+      "female": 65.8,
+      "region": "Africa"
+    },
+    {
+      "code": "oc",
+      "name": "Австралія та Океанія",
+      "nameEn": "Australia and Oceania",
+      "male": 78.3,
+      "female": 83.2,
+      "region": "Oceania"
+    }
+  ]
+}
