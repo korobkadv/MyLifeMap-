@@ -18,9 +18,27 @@ export class StorageService {
   static getPreferences() {
     try {
       const data = localStorage.getItem(CONFIG.STORAGE_KEYS.USER_PREFERENCES);
-      return data ? JSON.parse(data) : {};
+      if (!data) return {};
+
+      const preferences = JSON.parse(data);
+
+      // Перевіряємо наявність обов'язкових полів
+      if (!preferences.dob || !preferences.region || !preferences.gender) {
+        console.warn("Збережені дані не містять обов'язкових полів");
+        return {};
+      }
+
+      // Перевіряємо правильність дати народження
+      const dobDate = new Date(preferences.dob);
+      if (isNaN(dobDate.getTime()) || dobDate > new Date()) {
+        console.warn("Некоректна дата народження у збережених даних");
+        return {};
+      }
+
+      return preferences;
     } catch (error) {
       console.error("Storage Error:", error);
+      // У випадку помилки повертаємо порожній об'єкт
       return {};
     }
   }

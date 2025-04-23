@@ -1,54 +1,152 @@
-{
-  "version": "1.0.0",
-  "lastUpdated": "2024-01-13",
-  "countries": [
-    {
-      "code": "eu",
-      "name": "Європа",
-      "nameEn": "Europe",
-      "male": 75.8,
-      "female": 82.1,
-      "region": "Europe"
-    },
-    {
-      "code": "na",
-      "name": "Північна Америка",
-      "nameEn": "North America",
-      "male": 76.2,
-      "female": 81.3,
-      "region": "North America"
-    },
-    {
-      "code": "sa",
-      "name": "Південна Америка",
-      "nameEn": "South America",
-      "male": 72.5,
-      "female": 79.2,
-      "region": "South America"
-    },
-    {
-      "code": "as",
-      "name": "Азія",
-      "nameEn": "Asia",
-      "male": 71.8,
-      "female": 76.4,
-      "region": "Asia"
-    },
-    {
-      "code": "af",
-      "name": "Африка",
-      "nameEn": "Africa",
-      "male": 62.4,
-      "female": 65.8,
-      "region": "Africa"
-    },
-    {
-      "code": "oc",
-      "name": "Австралія та Океанія",
-      "nameEn": "Australia and Oceania",
-      "male": 78.3,
-      "female": 83.2,
-      "region": "Oceania"
+[
+  {
+    "code": "UA",
+    "name": "Україна",
+    "male": 67.6,
+    "female": 77.2,
+    "region": "Європа",
+    "capital": "Київ",
+    "population": "44.13 млн",
+    "lifeStats": {
+      "infantMortality": 7.8,
+      "healthcareQuality": 6.5,
+      "healthcareAccess": 7.2,
+      "topCausesDeath": ["Серцево-судинні захворювання", "Онкологія", "Зовнішні причини"]
     }
-  ]
-}
+  },
+  {
+    "code": "US",
+    "name": "Сполучені Штати Америки",
+    "male": 76.3,
+    "female": 81.4,
+    "region": "Північна Америка",
+    "capital": "Вашингтон",
+    "population": "331.45 млн",
+    "lifeStats": {
+      "infantMortality": 5.7,
+      "healthcareQuality": 8.2,
+      "healthcareAccess": 7.5,
+      "topCausesDeath": ["Серцево-судинні захворювання", "Онкологія", "Респіраторні захворювання"]
+    }
+  },
+  {
+    "code": "GB",
+    "name": "Великобританія",
+    "male": 79.4,
+    "female": 83.1,
+    "region": "Європа",
+    "capital": "Лондон",
+    "population": "67.22 млн",
+    "lifeStats": {
+      "infantMortality": 3.7,
+      "healthcareQuality": 8.7,
+      "healthcareAccess": 9.0,
+      "topCausesDeath": ["Серцево-судинні захворювання", "Деменція", "Онкологія"]
+    }
+  },
+  {
+    "code": "DE",
+    "name": "Німеччина",
+    "male": 78.7,
+    "female": 83.6,
+    "region": "Європа",
+    "capital": "Берлін",
+    "population": "83.24 млн",
+    "lifeStats": {
+      "infantMortality": 3.4,
+      "healthcareQuality": 9.1,
+      "healthcareAccess": 9.2,
+      "topCausesDeath": ["Серцево-судинні захворювання", "Онкологія", "Респіраторні захворювання"]
+    }
+  },
+  {
+    "code": "FR",
+    "name": "Франція",
+    "male": 79.8,
+    "female": 85.9,
+    "region": "Європа",
+    "capital": "Париж",
+    "population": "65.27 млн",
+    "lifeStats": {
+      "infantMortality": 3.8,
+      "healthcareQuality": 9.0,
+      "healthcareAccess": 9.4,
+      "topCausesDeath": ["Серцево-судинні захворювання", "Онкологія", "Хвороби нервової системи"]
+    }
+  },
+  {
+    "code": "JP",
+    "name": "Японія",
+    "male": 81.5,
+    "female": 87.7,
+    "region": "Азія",
+    "capital": "Токіо",
+    "population": "126.48 млн",
+    "lifeStats": {
+      "infantMortality": 1.9,
+      "healthcareQuality": 9.5,
+      "healthcareAccess": 9.3,
+      "topCausesDeath": ["Онкологія", "Серцево-судинні захворювання", "Пневмонія"]
+    }
+  },
+  {
+    "code": "CN",
+    "name": "Китай",
+    "male": 75.0,
+    "female": 79.4,
+    "region": "Азія",
+    "capital": "Пекін",
+    "population": "1.41 млрд",
+    "lifeStats": {
+      "infantMortality": 9.3,
+      "healthcareQuality": 7.0,
+      "healthcareAccess": 6.8,
+      "topCausesDeath": ["Серцево-судинні захворювання", "Онкологія", "Респіраторні захворювання"]
+    }
+  },
+  {
+    "code": "CA",
+    "name": "Канада",
+    "male": 80.2,
+    "female": 84.1,
+    "region": "Північна Америка",
+    "capital": "Оттава",
+    "population": "38.01 млн",
+    "lifeStats": {
+      "infantMortality": 4.3,
+      "healthcareQuality": 8.7,
+      "healthcareAccess": 9.1,
+      "topCausesDeath": ["Серцево-судинні захворювання", "Онкологія", "Респіраторні захворювання"]
+    }
+  },
+  {
+    "code": "AU",
+    "name": "Австралія",
+    "male": 81.3,
+    "female": 85.4,
+    "region": "Океанія",
+    "capital": "Канберра",
+    "population": "25.69 млн",
+    "lifeStats": {
+      "infantMortality": 3.1,
+      "healthcareQuality": 8.9,
+      "healthcareAccess": 9.3,
+      "topCausesDeath": ["Серцево-судинні захворювання", "Деменція", "Онкологія"]
+    }
+  },
+  {
+    "code": "BR",
+    "name": "Бразилія",
+    "male": 71.5,
+    "female": 78.7,
+    "region": "Південна Америка",
+    "capital": "Бразиліа",
+    "population": "212.57 млн",
+    "lifeStats": {
+      "infantMortality": 13.4,
+      "healthcareQuality": 6.0,
+      "healthcareAccess": 5.7,
+      "topCausesDeath": ["Серцево-судинні захворювання", "Онкологія", "Респіраторні захворювання"]
+    }
+  }
+]

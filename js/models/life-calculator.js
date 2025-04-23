@@ -3,28 +3,39 @@ import { CONFIG } from "../config.js";
 
 export class LifeCalculator {
   static calculateUnitsLived(dob, today, mode) {
-    if (!(dob instanceof Date) || !(today instanceof Date)) {
-      throw new Error("Невірний формат дати");
+    // Рахуємо кількість прожитих одиниць (тижнів, місяців, років)
+    const diff = today - dob;
+    const daysDiff = diff / (1000 * 60 * 60 * 24);
+
+    switch (mode) {
+      case "weeks":
+        return Math.floor(daysDiff / 7);
+      case "months":
+        // Рахуємо кількість прожитих місяців
+        const monthYears = today.getFullYear() - dob.getFullYear();
+        const months = today.getMonth() - dob.getMonth();
+        const adjustedMonths = monthYears * 12 + months;
+
+        // Якщо день у місяці сьогодні менший за день народження,
+        // віднімаємо один місяць (не повний місяць)
+        return today.getDate() < dob.getDate()
+          ? adjustedMonths - 1
+          : adjustedMonths;
+      case "years":
+        // Визначаємо вік у роках
+        let ageYears = today.getFullYear() - dob.getFullYear();
+        // Якщо день народження ще не настав у поточному році
+        if (
+          today.getMonth() < dob.getMonth() ||
+          (today.getMonth() === dob.getMonth() &&
+            today.getDate() < dob.getDate())
+        ) {
+          ageYears--;
+        }
+        return ageYears;
+      default:
+        return 0;
     }
-
-    const diffTime = today - dob;
-    if (diffTime < 0) {
-      throw new Error("Дата народження не може бути в майбутньому");
-    }
-
-    const calculations = {
-      [CONFIG.DISPLAY_MODES.WEEKS]: () =>
-        Math.floor(diffTime / (1000 * 60 * 60 * 24 * 7)),
-      [CONFIG.DISPLAY_MODES.MONTHS]: () =>
-        Math.floor(diffTime / (1000 * 60 * 60 * 24 * 30.44)),
-      [CONFIG.DISPLAY_MODES.YEARS]: () => this.calculateYears(dob, today),
-    };
-
-    if (!calculations[mode]) {
-      throw new Error("Невірний режим відображення");
-    }
-
-    return calculations[mode]();
   }
 
   static calculateYears(dob, today) {
@@ -39,10 +50,27 @@ export class LifeCalculator {
   }
 
   static calculateLifeExpectancy(countryData, gender) {
+    // Перевіряємо, чи передані всі необхідні дані
     if (!countryData || !gender) {
-      throw new Error("Недостатньо даних для розрахунку");
+      return gender === "male" ? 72 : 78; // Значення за замовчуванням
     }
-    return gender === "male" ? countryData.male : countryData.female;
+
+    // Отримуємо значення очікуваної тривалості життя в залежності від статі
+    let lifeExpectancy;
+    switch (gender.toLowerCase()) {
+      case "male":
+        lifeExpectancy = countryData.male || 72; // Запасне значення, якщо дані відсутні
+        break;
+      case "female":
+        lifeExpectancy = countryData.female || 78; // Запасне значення, якщо дані відсутні
+        break;
+      default:
+        lifeExpectancy = (countryData.male + countryData.female) / 2 || 75; // Середнє значення
+        break;
+    }
+
+    // Рахуємо фінальне значення з округленням до цілих років
+    return Math.round(lifeExpectancy);
   }
 
   static getLifeStatistics(unitsLived, totalUnits, mode) {

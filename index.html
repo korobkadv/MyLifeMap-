@@ -7,22 +7,22 @@
     <meta name="description"
         content="My Life Map - візуалізація життя через кольорові блоки. Дізнайтеся як виглядає ваше життя у тижнях, місяцях та роках.">
     <meta name="keywords" content="life map, візуалізація життя, календар життя, життєва статистика">
-<meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com;">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; 
+                 script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; 
+                 style-src 'self' 'unsafe-inline';
+                 img-src 'self' data: https://flagcdn.com;
+                 connect-src 'self'">
     <title>My Life Map - Візуалізація вашого життя</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-    <!-- <link rel="preload" as="style" href="styles.css"> -->
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/stats.css">
+    <link rel="stylesheet" href="styles/fun-facts.css">
     <link rel="icon" href="img/fav.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.5/purify.min.js"></script>
 </head>
 
 <body>
-    <div class="theme-switch">
-        <button id="theme-toggle" aria-label="Перемкнути тему" class="theme-switch__button">
-            <span class="theme-switch__icon"></span>
-        </button>
-    </div>
-
     <header class="header" role="banner">
         <h1 class="header__logo">My Life Map</h1>
         <p class="header__description">Візуалізація життя через кольорові блоки</p>
@@ -57,9 +57,10 @@
                     </div>
 
                     <div class="form__group">
-                        <label for="country" class="form__label">Регіон проживання:</label>
-                        <select id="country" name="country" class="form__select" required aria-required="true"
-                            aria-label="Оберіть регіон проживання">
+                        <label for="region" class="form__label">Країна проживання:</label>
+                        <select id="region" name="region" class="form__select" required aria-required="true">
+                            <option value="">Оберіть країну</option>
+                            <!-- Статичні опції видалено -->
                         </select>
                     </div>
 
@@ -73,6 +74,118 @@
                         </select>
                     </div>
 
+                    <div class="form__divider">
+                        <span>Скільки годин на день ви витрачаєте на:</span>
+                    </div>
+
+                    <div class="form__group form__group--inline">
+                        <label for="sleep-hours" class="form__label">Сон:</label>
+                        <input type="number" id="sleep-hours" name="sleep-hours" class="form__input form__input--small" 
+                            min="1" max="16" step="0.5" placeholder="8">
+                        <span class="form__unit">год.</span>
+                    </div>
+
+                    <div class="form__group form__group--inline">
+                        <label for="work-hours" class="form__label">Робота/навчання:</label>
+                        <input type="number" id="work-hours" name="work-hours" class="form__input form__input--small" 
+                            min="0" max="16" step="0.5" placeholder="8">
+                        <span class="form__unit">год.</span>
+                    </div>
+
+                    <div class="form__group form__group--inline">
+                        <label for="sport-hours" class="form__label">Фізична активність:</label>
+                        <input type="number" id="sport-hours" name="sport-hours" class="form__input form__input--small" 
+                            min="0" max="8" step="0.5" placeholder="1">
+                        <span class="form__unit">год.</span>
+                    </div>
+
+                    <div class="form__group form__group--inline">
+                        <label for="social-hours" class="form__label">Соціальні мережі:</label>
+                        <input type="number" id="social-hours" name="social-hours" class="form__input form__input--small" 
+                            min="0" max="8" step="0.5" placeholder="2">
+                        <span class="form__unit">год.</span>
+                    </div>
+
+                    <div class="form__group form__group--inline">
+                        <label for="food-hours" class="form__label">Час на прийом їжі:</label>
+                        <input type="number" id="food-hours" name="food-hours" class="form__input form__input--small" 
+                            min="0" max="6" step="0.5" placeholder="1.5">
+                        <span class="form__unit">год.</span>
+                    </div>
+                    
+                    <!-- Нова секція: Цифрова активність -->
+                    <div class="form__divider">
+                        <span>Цифрова активність (годин на день):</span>
+                    </div>
+                    
+                    <div class="form__group form__group--inline">
+                        <label for="screen-time-hours" class="form__label">Екранний час:</label>
+                        <input type="number" id="screen-time-hours" name="screen-time-hours" class="form__input form__input--small" 
+                            min="0" max="16" step="0.5" placeholder="4">
+                        <span class="form__unit">год.</span>
+                    </div>
+
+                    <div class="form__group form__group--inline">
+                        <label for="reading-hours" class="form__label">Читання:</label>
+                        <input type="number" id="reading-hours" name="reading-hours" class="form__input form__input--small" 
+                            min="0" max="6" step="0.1" placeholder="0.5">
+                        <span class="form__unit">год.</span>
+                    </div>
+
+                    <div class="form__group form__group--inline">
+                        <label for="gaming-hours" class="form__label">Відеоігри:</label>
+                        <input type="number" id="gaming-hours" name="gaming-hours" class="form__input form__input--small" 
+                            min="0" max="8" step="0.5" placeholder="1">
+                        <span class="form__unit">год.</span>
+                    </div>
+                    
+                    <!-- Нова секція: Подорожі і транспорт -->
+                    <div class="form__divider">
+                        <span>Подорожі та транспорт:</span>
+                    </div>
+                    
+                    <div class="form__group form__group--inline">
+                        <label for="transport-hours" class="form__label">У дорозі:</label>
+                        <input type="number" id="transport-hours" name="transport-hours" class="form__input form__input--small" 
+                            min="0" max="8" step="0.5" placeholder="1">
+                        <span class="form__unit">год.</span>
+                    </div>
+                    
+                    <div class="form__group form__group--inline">
+                        <label for="trips-per-year" class="form__label">Подорожі на рік:</label>
+                        <input type="number" id="trips-per-year" name="trips-per-year" class="form__input form__input--small" 
+                            min="0" max="50" step="1" placeholder="2">
+                        <span class="form__unit">шт.</span>
+                    </div>
+                    
+                    <div class="form__group">
+                        <label for="transport-type" class="form__label">Основний вид транспорту:</label>
+                        <select id="transport-type" name="transport-type" class="form__select">
+                            <option value="public">Громадський транспорт</option>
+                            <option value="car">Автомобіль</option>
+                            <option value="bicycle">Велосипед</option>
+                            <option value="combined">Комбіновано</option>
+                        </select>
+                    </div>
+
+                    <div class="form__divider">
+                        <span>Скільки ви споживаєте в день:</span>
+                    </div>
+
+                    <div class="form__group form__group--inline">
+                        <label for="meat-per-day" class="form__label">М'ясо та риба:</label>
+                        <input type="number" id="meat-per-day" name="meat-per-day" class="form__input form__input--small" 
+                            min="0" max="2" step="0.05" placeholder="0.25">
+                        <span class="form__unit">кг</span>
+                    </div>
+
+                    <div class="form__group form__group--inline">
+                        <label for="vegetables-per-day" class="form__label">Овочі та фрукти:</label>
+                        <input type="number" id="vegetables-per-day" name="vegetables-per-day" class="form__input form__input--small" 
+                            min="0" max="2" step="0.05" placeholder="0.5">
+                        <span class="form__unit">кг</span>
+                    </div>
+
                     <button type="submit" class="form__submit">
                         Показати статистику
                     </button>
@@ -81,17 +194,21 @@
         </section>
         
         <!-- Права колонка зі статистикою -->
-        <section id="stats-section" class="layout__stats" aria-hidden="true">
-            <!-- <h2 class="stats-section__title">Ваша життєва мапа</h2> -->
-        
+        <section id="stats-section" class="layout__main" aria-hidden="true">
             <div class="stats-summary" id="stats-summary">
                 <!-- Заповнюється через JavaScript -->
             </div>
         
-            <div class="visualization-wrapper">
-                <div id="visualization" class="visualization" role="grid" aria-label="Візуалізація життя">
-                    <!-- Заповнюється через JavaScript -->
+            <div class="visualization-section">
+                <div class="visualization-wrapper">
+                    <div id="visualization" class="visualization" role="grid" aria-label="Візуалізація життя">
+                        <!-- Заповнюється через JavaScript -->
+                    </div>
                 </div>
+            </div>
+
+            <div class="historical-events-section">
+                <!-- Історичні події будуть додані через JavaScript -->
             </div>
         
             <div class="controls">
@@ -102,6 +219,9 @@
                     Поділитися
                 </button>
             </div>
+
+            <!-- Секція з основними статистичними даними -->
+            <div id="fun-facts-container" class="fun-facts-container"></div>
         </section>
         </div>
         </main>
@@ -119,8 +239,28 @@
     </div>
 
     <!-- Скрипти -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="./js/app.js" type="module"></script>
+    <script type="module" src="js/config.js"></script>
+    <!-- Models -->
+    <script type="module" src="js/models/user-preferences.js"></script>
+    <script type="module" src="js/models/life-calculator.js"></script>
+    <!-- Services -->
+    <script type="module" src="js/services/storage.service.js"></script>
+    <script type="module" src="js/services/api.service.js"></script>
+    <script type="module" src="js/services/validation.service.js"></script>
+    <script type="module" src="js/services/fun-facts.service.js"></script>
+    <script type="module" src="js/services/comparison.service.js"></script>
+    <script type="module" src="js/services/export.service.js"></script>
+    <script type="module" src="js/services/historical-events.service.js"></script>
+    <!-- Views -->
+    <script type="module" src="js/views/modal.view.js"></script>
+    <script type="module" src="js/views/visualization.view.js"></script>
+    <script type="module" src="js/views/stats.view.js"></script>
+    <script type="module" src="js/views/fun-facts.view.js"></script>
+    <script type="module" src="js/views/historical-events.view.js"></script>
+    <!-- Data -->
+    <script type="module" src="js/data/historical-events.js"></script>
+    <!-- Main App -->
+    <script type="module" src="js/app.js"></script>
 </body>
 
 </html>

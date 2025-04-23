@@ -1,0 +1,772 @@
+/* Стилі для секції статистики */
+.stats-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--background-secondary);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.stats-section--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stats-summary__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Стилі для заголовка країни */
+.country-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  padding: 1rem;
+  background-color: var(--background-card);
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  border-bottom: 1px solid var(--accent-color);
+  transition: all 0.3s ease;
+  animation: fadeInDown 0.7s ease-out forwards;
+}
+
+.country-header:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.country-info-title {
+  color: var(--text-primary);
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.country-flag {
+  width: 64px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  animation: pulseFlag 2s infinite alternate ease-in-out;
+}
+
+.country-flag:hover {
+  transform: scale(1.1) rotate(3deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.country-emoji {
+  font-size: 2.5rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1;
+  animation: pulseFlag 2s infinite alternate ease-in-out;
+}
+
+/* Стилі для інформації про країну */
+.country-info-section {
+  padding: 1.5rem;
+  background-color: var(--background-card);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+  border-top: 4px solid var(--accent-color);
+  transition: transform 0.3s ease;
+}
+
+.country-info-section:hover {
+  transform: translateY(-5px);
+}
+
+.country-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.country-info-card {
+  padding: 1rem;
+  background-color: var(--background-tertiary);
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.country-info-card:hover {
+  transform: translateY(-3px);
+  border-left-color: var(--accent-color);
+}
+
+.info-title {
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* Стилі для демографічних даних */
+.country-demographics {
+  background-color: var(--background-tertiary);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.demographics-title {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.demographics-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.demographics-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.demographics-label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.demographics-value {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.04);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+/* Стилі для статистики здоров'я */
+.health-stats-section {
+  padding: 1rem;
+  background-color: var(--background-card);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.health-stats-title {
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.health-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.health-stats-card {
+  padding: 0.75rem;
+  background-color: var(--background-tertiary);
+  border-radius: 6px;
+  transition: transform 0.2s;
+}
+
+.health-stats-card:hover {
+  transform: translateY(-2px);
+}
+
+.stats-title {
+  margin-bottom: 0.3rem;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.stats-value {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.causes-death-section {
+  margin-top: 1rem;
+  background-color: var(--background-tertiary);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.causes-title {
+  margin-bottom: 0.8rem;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.causes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.causes-list li {
+  background-color: var(--background-card);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  border-left: 3px solid var(--accent-color);
+}
+
+.causes-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Стилі для секції порівняння */
+.comparison-section {
+  padding: 0.5rem 1.5rem 1.5rem;
+  background-color: var(--background-card);
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  border-top: none;
+  margin-top: 0;
+}
+
+.comparison-title {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.comparison-card {
+  padding: 1.5rem;
+  background-color: var(--background-tertiary);
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+  border-left: 3px solid transparent;
+  text-align: center;
+}
+
+.comparison-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.comparison-card .comparison-title {
+  margin-bottom: 0.8rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.comparison-value {
+  color: var(--accent-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.comparison-description {
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+}
+
+/* Стилі для історичних подій */
+.historical-events-section {
+  padding: 1.5rem;
+  background-color: var(--background-card);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+.historical-events-title {
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.event-item {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: var(--background-tertiary);
+  border-radius: 6px;
+  transition: transform 0.2s;
+}
+
+.event-item:hover {
+  transform: translateY(-2px);
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.event-year {
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.event-age {
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+}
+
+.event-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.event-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Оформлення секції з віхами життя та історичними подіями */
+.milestones-container {
+  margin-top: 2rem;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.milestones-section {
+  margin-bottom: 2rem;
+}
+
+.milestones-header {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-primary-light);
+}
+
+.milestones-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.milestone-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: var(--color-background);
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--color-primary-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.milestone-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.milestone-item.historical-event {
+  border-left-color: var(--color-secondary);
+}
+
+.milestone-year {
+  min-width: 4rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  padding-right: 1rem;
+}
+
+.milestone-details {
+  flex: 1;
+}
+
+.milestone-name {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.milestone-description {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  margin: 0.5rem 0 0;
+}
+
+.completed-milestones .milestone-item {
+  opacity: 0.9;
+}
+
+.upcoming-milestones .milestone-item {
+  border-style: dashed;
+  opacity: 0.8;
+}
+
+/* Анімації появи віх */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.milestone-item {
+  animation: fadeInUp 0.4s ease forwards;
+  animation-delay: calc(var(--item-index, 0) * 0.1s);
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .country-info-grid,
+  .health-stats-grid,
+  .comparison-grid,
+  .demographics-info {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .country-header {
+    padding-bottom: 0.8rem;
+  }
+  
+  .country-info-title {
+    font-size: 1.5rem;
+  }
+  
+  .country-flag {
+    width: 48px;
+  }
+  
+  .country-emoji {
+    font-size: 1.8rem;
+  }
+  
+  .comparison-card {
+    padding: 1rem;
+  }
+  
+  .comparison-value {
+    font-size: 1.5rem;
+  }
+  
+  .activity-icon {
+    font-size: 1.5rem;
+    margin: 0.3rem 0;
+  }
+  
+  .milestone-item {
+    flex-direction: column;
+  }
+  
+  .milestone-year {
+    margin-bottom: 0.5rem;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .activity-icon {
+    font-size: 1.3rem;
+  }
+  
+  .comparison-card .comparison-title {
+    font-size: 0.9rem;
+  }
+  
+  .comparison-value {
+    font-size: 1.3rem;
+  }
+}
+
+/* Анімація для карток */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.country-info-card,
+.health-stats-card,
+.demographics-item,
+.causes-list li {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Скидаємо анімацію для всіх порівняльних карток */
+.comparison-card {
+  animation: none !important;
+}
+
+/* Різні затримки для анімації карток (крім порівняльних) */
+.country-info-card:nth-child(1),
+.health-stats-card:nth-child(1),
+.demographics-item:nth-child(1),
+.causes-list li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.country-info-card:nth-child(2),
+.health-stats-card:nth-child(2),
+.demographics-item:nth-child(2),
+.causes-list li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.country-info-card:nth-child(3),
+.health-stats-card:nth-child(3),
+.demographics-item:nth-child(3),
+.causes-list li:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.country-info-card:nth-child(4),
+.health-stats-card:nth-child(4),
+.demographics-item:nth-child(4),
+.causes-list li:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* Додаткові анімації */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseFlag {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+/* Стилі для пустого стану статистики */
+.stats-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xl);
+  margin: var(--spacing-lg) 0;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  min-height: 200px;
+  border-left: 4px solid var(--color-accent);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.stats-empty-state h3 {
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+  font-size: 1.4rem;
+}
+
+.stats-empty-state p {
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+/* Стилі для карток споживання їжі */
+.comparison-card.food-consumption {
+  border-left: 3px solid var(--food-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.comparison-card.food-consumption:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--food-color) 0%, rgba(165, 214, 167, 0.3) 100%);
+  transition: height 0.3s ease;
+}
+
+.comparison-card.food-consumption .comparison-value {
+  color: var(--food-color);
+  font-weight: 800;
+}
+
+/* Стилі для соціальних мереж та харчування */
+.comparison-card:nth-child(4) .comparison-value,
+.comparison-card:nth-child(5) .comparison-value {
+  position: relative;
+  display: inline-block;
+}
+
+.comparison-card:nth-child(4) .comparison-value::after,
+.comparison-card:nth-child(5) .comparison-value::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.5;
+  transform: scaleX(1);
+}
+
+/* Плавне виділення картки при наведенні без анімації */
+.comparison-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comparison-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+/* Базові стилі для карток споживання їжі при наведенні */
+.comparison-card.food-consumption:hover:before {
+  height: 8px;
+}
+
+/* Стиль для карток соціальних мереж та харчування при наведенні */
+.comparison-card:nth-child(4):hover,
+.comparison-card:nth-child(5):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Стилі для іконок активностей без анімації */
+.activity-icon {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Стилі для карток з різними типами активностей */
+.comparison-card:nth-child(1) {
+  border-left-color: var(--sleep-color);
+}
+
+.comparison-card:nth-child(1) .comparison-value {
+  color: var(--sleep-color);
+}
+
+.comparison-card:nth-child(2) {
+  border-left-color: var(--work-color);
+}
+
+.comparison-card:nth-child(2) .comparison-value {
+  color: var(--work-color);
+}
+
+.comparison-card:nth-child(3) {
+  border-left-color: var(--sport-color);
+}
+
+.comparison-card:nth-child(3) .comparison-value {
+  color: var(--sport-color);
+}
+
+.comparison-card:nth-child(4) {
+  border-left-color: var(--social-color);
+}
+
+.comparison-card:nth-child(4) .comparison-value {
+  color: var(--social-color);
+}
+
+.comparison-card:nth-child(5) {
+  border-left-color: var(--food-color);
+}
+
+.comparison-card:nth-child(5) .comparison-value {
+  color: var(--food-color);
+}
+
+.comparison-card:nth-child(6) {
+  border-left-color: var(--leisure-color);
+}
+
+.comparison-card:nth-child(6) .comparison-value {
+  color: var(--leisure-color);
+} 

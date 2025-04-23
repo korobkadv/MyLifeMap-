@@ -1,0 +1,331 @@
+/* Анімації для проекту MyLifeMap */
+
+@keyframes blockAppear {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Анімація для секції Fun Facts */
+@keyframes slideInRight {
+  0% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Кольори для різних типів активностей */
+:root {
+  --sleep-color: #8C9EFF;      /* М'який синій для сну */
+  --work-color: #FFB74D;       /* М'який помаранчевий для роботи */
+  --sport-color: #81C784;      /* М'який зелений для спорту */
+  --leisure-color: #FF8A80;    /* М'який червоний для дозвілля */
+  --social-color: #B39DDB;     /* М'який фіолетовий для соціальних мереж */
+  --food-color: #A5D6A7;       /* М'який салатовий для їжі */
+  --color-sleep: #8C9EFF;
+  --color-work: #FFB74D;
+  --color-sport: #81C784;
+  --color-social: #F48FB1;
+  --color-food: #FF9800;
+  --color-leisure: #4DD0E1;
+  --life-block-size: 10px;
+}
+
+.life-block {
+  width: var(--life-block-size);
+  height: var(--life-block-size);
+  border-radius: 2px;
+  background-color: var(--block-color, #ffffff);
+  animation: blockAppear 300ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: calc(var(--index, 0) * 2ms);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.life-block.lived {
+  background-color: var(--lived-block-color, #17B978);
+}
+
+/* Стилі для блоків активностей */
+.life-block.sleep {
+  background-color: var(--sleep-color);
+  border: 1px solid rgba(140, 158, 255, 0.3);
+}
+
+.life-block.work {
+  background-color: var(--work-color);
+  border: 1px solid rgba(255, 183, 77, 0.3);
+}
+
+.life-block.sport {
+  background-color: var(--sport-color);
+  border: 1px solid rgba(129, 199, 132, 0.3);
+}
+
+.life-block.leisure {
+  background-color: var(--leisure-color);
+  border: 1px solid rgba(255, 138, 128, 0.3);
+}
+
+.life-block.social {
+  background-color: var(--social-color);
+  border: 1px solid rgba(179, 157, 219, 0.3);
+}
+
+.life-block.food {
+  background-color: var(--food-color);
+  border: 1px solid rgba(165, 214, 167, 0.3);
+}
+
+/* Додаємо стилі для відсутніх активностей */
+.life-block.screen {
+  background-color: var(--screen-color);
+  border: 1px solid rgba(100, 181, 246, 0.3); /* Відповідає --screen-color */
+}
+
+.life-block.reading {
+  background-color: var(--reading-color);
+  border: 1px solid rgba(255, 213, 79, 0.3); /* Відповідає --reading-color */
+}
+
+.life-block.gaming {
+  background-color: var(--gaming-color);
+  border: 1px solid rgba(229, 115, 115, 0.3); /* Відповідає --gaming-color */
+}
+
+.life-block.transport {
+  background-color: var(--transport-color);
+  border: 1px solid rgba(144, 164, 174, 0.3); /* Відповідає --transport-color */
+}
+
+/* Ефекти при наведенні */
+.life-block.sleep:hover {
+  box-shadow: 0 0 8px var(--sleep-color);
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+.life-block.work:hover {
+  box-shadow: 0 0 8px var(--work-color);
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+.life-block.sport:hover {
+  box-shadow: 0 0 8px var(--sport-color);
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+.life-block.leisure:hover {
+  box-shadow: 0 0 8px var(--leisure-color);
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+.life-block.social:hover {
+  box-shadow: 0 0 8px var(--social-color);
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+.life-block.food:hover {
+  box-shadow: 0 0 8px var(--food-color);
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+/* Додаємо відповідні :hover ефекти */
+.life-block.screen:hover {
+  box-shadow: 0 0 8px var(--screen-color);
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+.life-block.reading:hover {
+  box-shadow: 0 0 8px var(--reading-color);
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+.life-block.gaming:hover {
+  box-shadow: 0 0 8px var(--gaming-color);
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+.life-block.transport:hover {
+  box-shadow: 0 0 8px var(--transport-color);
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+/* Fun Facts анімації */
+.fun-facts-section {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.fact-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.show-next-fact .fact-item {
+  animation: slideInRight 0.4s ease-out forwards;
+}
+
+.show-prev-fact .fact-item {
+  animation: slideInLeft 0.4s ease-out forwards;
+}
+
+.fact-icon {
+  animation: pulsate 1.5s infinite ease-in-out;
+}
+
+.activity-bar {
+  transition: all 0.3s ease-out;
+}
+
+.activity-bar:hover {
+  transform: scaleY(1.05);
+  filter: brightness(1.1);
+}
+
+/* Адаптивність розмірів блоків */
+@media (max-width: 480px) {
+  :root {
+    --life-block-size: 8px;
+  }
+  .life-block {
+    border-radius: 1px;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --life-block-size: 12px;
+  }
+  .life-block {
+    border-radius: 3px;
+  }
+}
+
+/* Для пристроїв, що віддають перевагу зменшеній анімації */
+@media (prefers-reduced-motion: reduce) {
+  .life-block {
+    animation-duration: 50ms;
+    animation-delay: 0ms;
+  }
+  
+  .show-next-fact .fact-item,
+  .show-prev-fact .fact-item,
+  .fun-facts-section,
+  .fact-icon {
+    animation: none;
+  }
+} 
+
+/* Легенда активностей */
+.activity-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-md);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.legend-item:hover {
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin-right: 6px;
+  transition: transform 0.2s ease;
+}
+
+.legend-item:hover .legend-color {
+  transform: scale(1.2);
+}
+
+.legend-color.sleep {
+  background-color: var(--sleep-color);
+}
+
+.legend-color.work {
+  background-color: var(--work-color);
+}
+
+.legend-color.sport {
+  background-color: var(--sport-color);
+}
+
+.legend-color.leisure {
+  background-color: var(--leisure-color);
+}
+
+.legend-color.social {
+  background-color: var(--social-color);
+}
+
+.legend-color.food {
+  background-color: var(--food-color);
+}
+
+.legend-text {
+  font-size: 0.9rem;
+  color: var(--color-text);
+} 
