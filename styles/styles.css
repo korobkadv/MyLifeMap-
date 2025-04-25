@@ -1,0 +1,658 @@
+/* ========================== */
+/* Змінні та налаштування    */
+/* ========================== */
+@font-face {
+    font-family: 'Lobster';
+    src: url('../fonts/Lobster-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Оптимізація завантаження шрифту */
+}
+
+:root {
+    /* Базова палітра кольорів */
+    --color-primary: #17B978;
+    --color-primary-dark: #138b6b;
+    --color-secondary: #FFA62B;
+    --color-background: #12232E;
+    --color-background-light: #203647;
+    --color-surface: #30475E;
+    --color-text: #f4f4f4;
+    --color-text-secondary: #ccc;
+
+    /* Базові розміри (mobile first) */
+    --container-width: 100%;
+    --header-height: 60px;
+    --font-size-base: 16px;
+    --font-size-h1: 1.75rem;
+    --font-size-h2: 1.5rem;
+    --font-size-h3: 1.25rem;
+
+    /* Відступи */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+
+    /* Радіуси */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+
+    /* Тіні */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+    /* Анімації */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+
+    /* Припускаємо, що --color-primary: #17B978; */
+    --color-primary-rgb: 23, 185, 120;
+}
+
+/* ========================== */
+/* Базові стилі              */
+/* ========================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: var(--font-size-base);
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: var(--color-text);
+    background: linear-gradient(135deg, var(--color-background), var(--color-background-light));
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+/* ========================== */
+/* Header                     */
+/* ========================== */
+.header {
+    background-color: var(--color-background-light); /* Фон шапки */
+    padding: var(--spacing-md) var(--spacing-lg); /* Внутрішні відступи */
+    border-bottom: 1px solid var(--color-surface); /* Нижня межа */
+    /* box-shadow: var(--shadow-sm); */ /* Або тінь */
+    text-align: center; /* Центруємо текст на мобільних */
+}
+
+.header__logo {
+    font-size: 1.8rem; /* Розмір логотипу */
+    font-weight: normal; /* Lobster має свою жирність, стандартний normal */
+    color: var(--color-secondary); /* Новий колір */
+    margin-bottom: var(--spacing-xs); /* Менший відступ під лого */
+    letter-spacing: normal; /* Стандартний розрив для Lobster */
+    font-family: 'Lobster', cursive; /* Застосовуємо шрифт */
+}
+
+.header__description {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary); /* Світліший колір */
+    margin-bottom: 0; /* Прибираємо стандартний відступ параграфа */
+}
+
+/* Адаптив для шапки на більших екранах */
+@media (min-width: 768px) {
+    .header {
+        text-align: left; /* Вирівнювання ліворуч */
+        display: flex; /* Розташовуємо лого та опис поруч */
+        justify-content: space-between; /* Розносимо по краях */
+        align-items: center; /* Вирівнюємо по центру вертикально */
+    }
+
+    .header__logo {
+        font-size: 2.5rem; /* Збільшимо розмір для Lobster */
+        margin-bottom: 0;
+    }
+
+    .header__description {
+        font-size: 1rem;
+        text-align: right; /* Опис праворуч */
+    }
+}
+
+/* ========================== */
+/* Типографіка               */
+/* ========================== */
+h1 {
+    font-size: var(--font-size-h1);
+    margin-bottom: var(--spacing-md);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+    margin-bottom: var(--spacing-md);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ========================== */
+/* Layout                     */
+/* ========================== */
+.container {
+    width: var(--container-width);
+    max-width: 1200px; /* Максимальна ширина контейнера */
+    margin: 0 auto;
+    padding: var(--spacing-md);
+    flex-grow: 1; /* Дозволяє main займати доступний простір */
+}
+
+.layout {
+    display: flex;
+    flex-direction: column; /* Стеком на мобільних */
+    gap: var(--spacing-lg);
+}
+
+/* Стилі для правої колонки (статистика) */
+.layout__stats {
+    /* Стилі будуть додані, коли секція видима */
+}
+
+/* Приховуємо секцію статистики за замовчуванням */
+#stats-section[aria-hidden="true"] {
+    display: none;
+}
+
+/* ========================== */
+/* Stats Summary              */
+/* ========================== */
+.stats-summary {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background-color: var(--color-background-light);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-surface);
+}
+
+.stats-summary p {
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.1rem;
+    color: var(--color-text);
+}
+
+.stats-summary p:last-child {
+    margin-bottom: 0;
+}
+
+.stats-summary strong {
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.stats-summary__details {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-top: var(--spacing-md);
+}
+
+/* ========================== */
+/* Form                       */
+/* ========================== */
+.form__fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.form__legend {
+    font-size: var(--font-size-h3);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.form__group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form__label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.form__input,
+.form__select {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--color-surface);
+    border-radius: var(--radius-md);
+    background-color: var(--color-background-light);
+    color: var(--color-text);
+    font-size: inherit;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form__input:focus,
+.form__select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb, 23, 185, 120), 0.3); /* Додайте --color-primary-rgb */
+}
+
+/* Стилізація date input */
+.form__input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.8); /* Робить іконку календаря світлішою */
+    cursor: pointer;
+}
+
+.form__submit {
+    width: 100%;
+    padding: var(--spacing-md);
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.form__submit:hover,
+.form__submit:focus {
+    background-color: var(--color-primary-dark);
+    outline: none;
+}
+
+/* ========================== */
+/* Visualization              */
+/* ========================== */
+.visualization-wrapper {
+    margin-bottom: var(--spacing-lg);
+    overflow: hidden; /* Запобігання виходу за межі */
+    border: 1px solid var(--color-surface);
+    border-radius: var(--radius-md);
+    background-color: var(--color-background-light);
+    padding: var(--spacing-sm); /* Невеликий внутрішній відступ */
+}
+
+.visualization {
+    display: grid;
+    /* Кількість колонок і рядків встановлюється JS через --grid-cols, --grid-rows */
+    grid-template-columns: repeat(var(--grid-cols, 10), 1fr);
+    grid-template-rows: repeat(var(--grid-rows, 10), 1fr);
+    gap: 2px; /* Відстань між клітинками, можна зробити меншою */
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Намагаємось зробити контейнер квадратним */
+    /* Можна обмежити максимальну ширину, якщо потрібно */
+    /* max-width: 600px; */
+    /* margin: 0 auto; */ /* Центрування, якщо є max-width */
+}
+
+.visualization__cell {
+    border-radius: 1px; /* Легке заокруглення */
+    transition: background-color var(--transition-fast);
+    /* Можна додати мінімальний розмір, якщо клітинок дуже мало */
+    /* min-width: 5px; */
+    /* min-height: 5px; */
+}
+
+.visualization__cell--lived {
+    background-color: var(--color-primary);
+}
+
+.visualization__cell--remaining {
+    background-color: var(--color-surface); /* Сірий колір */
+}
+
+.visualization__cell:hover {
+  /* Можна додати ефект при наведенні, наприклад, легке збільшення або обводку */
+  /* transform: scale(1.1); */
+  /* outline: 1px solid var(--color-secondary); */
+}
+
+/* ========================== */
+/* Controls                   */
+/* ========================== */
+.controls {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center; /* Розміщуємо кнопки по центру */
+}
+
+.controls__button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.controls__button:hover,
+.controls__button:focus {
+    background-color: #e69526; /* Трохи темніший варіант secondary */
+    transform: translateY(-2px); /* Легкий підйом */
+    outline: none;
+}
+
+/* ========================== */
+/* Footer                     */
+/* ========================== */
+.footer {
+    margin-top: auto; /* Притискає футер до низу */
+    padding: var(--spacing-md);
+    text-align: center;
+    background-color: var(--color-background-light);
+    border-top: 1px solid var(--color-surface);
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ========================== */
+/* Language Switcher          */
+/* ========================== */
+.language-switcher {
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.language-switcher__button {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.9rem;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.language-switcher__button:hover {
+    color: var(--color-text);
+}
+
+.language-switcher__button.active {
+    color: var(--color-primary);
+    font-weight: bold;
+    /* background-color: var(--color-surface); */ /* Можна додати фон для активної */
+}
+
+.language-switcher__separator {
+    color: var(--color-surface);
+}
+
+/* ========================== */
+/* Accessibility              */
+/* ========================== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap; 
+}
+
+/* ========================== */
+/* Media Queries (Адаптивність) */
+/* ========================== */
+
+/* Планшети та невеликі десктопи (наприклад, >= 768px) */
+@media (min-width: 768px) {
+    :root {
+        /* Можна збільшити базовий шрифт */
+        /* --font-size-base: 17px; */
+        --font-size-h1: 2.25rem;
+        --font-size-h2: 1.75rem;
+        --font-size-h3: 1.5rem;
+    }
+
+    .layout {
+        flex-direction: row; /* Розташовуємо колонки поруч */
+        align-items: flex-start; /* Вирівнюємо по верху */
+    }
+
+    .layout__form {
+        flex: 1; /* Ліва колонка займає доступний простір */
+        max-width: 400px; /* Обмежуємо ширину форми */
+    }
+
+    .layout__stats {
+        flex: 2; /* Права колонка займає більше місця */
+        position: sticky; /* Робимо праву колонку 'липкою' */
+        top: var(--spacing-md); /* Відступ зверху при прокручуванні */
+    }
+
+    .form__submit {
+        width: auto; /* Кнопка не на всю ширину */
+        padding: var(--spacing-md) var(--spacing-xl);
+    }
+
+     .controls {
+        justify-content: flex-end; /* Кнопки керування справа */
+    }
+
+}
+
+/* Стилі для області захоплення зображення */
+#capture-area {
+    padding: var(--spacing-lg); /* Додаємо внутрішній відступ */
+    background-color: var(--color-background); /* Можна задати конкретний фон для зображення */
+}
+
+.capture-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl); /* Збільшуємо нижній відступ */
+    font-size: 2.2rem; /* Трохи збільшимо для Lobster */
+    font-weight: normal; /* Lobster має свою жирність */
+    color: var(--color-secondary); /* Новий колір */
+    font-family: 'Lobster', cursive; /* Застосовуємо шрифт */
+    letter-spacing: normal; /* Стандартний розрив */
+}
+
+/* Стилі для модального вікна */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 35, 46, 0.8); /* Трохи прозоріший фон */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal__content {
+    background-color: var(--color-background-light);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--radius-md); /* Стандартний радіус */
+    box-shadow: var(--shadow-md); /* Менш агресивна тінь */
+    text-align: center;
+    max-width: 90%;
+    width: 400px; /* Трохи ширше для нових кнопок */
+    border-top: none; /* Прибираємо верхній бордер */
+}
+
+.modal__title {
+    margin-top: 0;
+    margin-bottom: var(--spacing-xl); /* Більший відступ до кнопок */
+    color: var(--color-text); /* Стандартний колір тексту */
+    font-size: 1.3rem; /* Трохи менший */
+    font-weight: 500;
+}
+
+.modal__buttons {
+    display: grid;
+    grid-template-columns: 1fr; /* Кожна кнопка в окремому рядку */
+    gap: var(--spacing-sm); /* Менший відступ між кнопками */
+}
+
+.modal__button {
+    padding: 0.8rem 1rem; /* Стандартні відступи */
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm); /* Менший радіус */
+    border: 1px solid transparent; /* Прибираємо бордер за замовчуванням */
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    width: 100%;
+}
+
+.modal__button:hover,
+.modal__button:focus {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+    outline: none;
+}
+
+/* Основна дія - Зберегти */
+#save-device-button {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+#save-device-button:hover,
+#save-device-button:focus {
+    background-color: var(--color-primary-dark);
+}
+
+/* Кнопки соцмереж */
+.modal__button--facebook {
+    background-color: #1877F2; /* Колір Facebook */
+    color: #fff;
+}
+.modal__button--facebook:hover,
+.modal__button--facebook:focus {
+    background-color: #166fe5;
+}
+
+.modal__button--twitter {
+    background-color: #1DA1F2; /* Колір Twitter */
+    color: #fff;
+}
+.modal__button--twitter:hover,
+.modal__button--twitter:focus {
+    background-color: #1a91da;
+}
+
+/* Кнопка копіювання */
+.modal__button--copy {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+}
+.modal__button--copy:hover,
+.modal__button--copy:focus {
+    background-color: #e69526;
+}
+
+/* Кнопка скасування */
+.modal__button--cancel {
+    background-color: var(--color-surface); /* Сірий фон */
+    color: var(--color-text-secondary);
+}
+
+.modal__button--cancel:hover,
+.modal__button--cancel:focus {
+    background-color: #405a74; /* Трохи темніший сірий */
+    color: var(--color-text);
+}
+
+/* Адаптив для кнопок модального вікна */
+@media (min-width: 480px) {
+    .modal__buttons {
+       /* Можна зробити 2 колонки на більших екранах */
+       /* grid-template-columns: 1fr 1fr; */
+       /* Або залишити одну для простоти */
+    }
+    .modal__button {
+       /* width: auto; - не потрібно для grid */
+    }
+}
+
+/* Стилі для Прелоадера */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Трохи темніший фон */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* Поверх модального вікна, якщо воно вже є */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+
+.preloader[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--color-surface); /* Сірий колір основи */
+    border-top-color: var(--color-primary); /* Колір анімації */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Стилі для Tooltip */
+.tooltip {
+    position: fixed; /* Фіксоване позиціонування відносно viewport */
+    background-color: rgba(0, 0, 0, 0.8); /* Темний напівпрозорий фон */
+    color: #fff; /* Білий текст */
+    padding: var(--spacing-xs) var(--spacing-sm); /* Невеликі відступи */
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem; /* Маленький шрифт */
+    z-index: 1010; /* Поверх усього */
+    pointer-events: none; /* Не заважає клікам */
+    white-space: nowrap; /* Запобігає переносу тексту */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    /* Позиція буде встановлюватися JS */
+    left: 0;
+    top: 0;
+}
+
+.tooltip[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+}
